@@ -11,8 +11,9 @@ function App() {
  useEffect(()=>{
     fetch(`http://api.weatherapi.com/v1/current.json?key=8ba0aa326baf4b97b7d101444222212&q=${city}&aqi=no`)
     .then(response => response.json())
-    .then(data => setData(data))
-    .then(console.log(data?.location))
+    .then(data => !data?.error ? setData(data) : setData(null))
+    .then(console.log(data))
+    
  }, [search])
 
  const cityHandler = event =>{
